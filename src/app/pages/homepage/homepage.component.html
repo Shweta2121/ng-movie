@@ -1,0 +1,159 @@
+<div class="tu-header tu-b-b-1">
+  <section class="uk-visible@ms">
+    <div class="tu-header" [ngClass]="{'tu-header-has-bg': !config?.isTransparent}"
+      uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+      <nav class="uk-navbar-container uk-container tu-b-0 tu-p-h-xs-10" style="z-index: 2;" uk-navbar>
+        <div class="uk-navbar-left">
+          <a class="uk-navbar-toggle uk-hidden@l uk-hidden@m uk-hidden@xl" (click)="toggleSideNav()"
+            uk-navbar-toggle-icon></a>
+          <a class="uk-navbar-item uk-logo uk-visible@m" routerLink="/">
+            <img class="tu-mxw-120" src="assets/pexels-magda-ehlers-1337384.jpg" *ngIf="config?.isFullLogo" />
+            <img src="assets/pexels-magda-ehlers-1337384.jpg" *ngIf="!config?.isFullLogo" />
+          </a>
+        </div>
+        <div class="uk-navbar-center">
+          <div class="uk-hidden@l uk-hidden@m uk-hidden@xl">
+            <a class="uk-navbar-item uk-logo" routerLink="/">
+              <img class="tu-mxw-100" src="assets/pexels-magda-ehlers-1337384.jpg" />
+            </a>
+          </div>
+          <div class="uk-visible@m">
+            <ul class="uk-navbar-nav tu-font-family">
+              <li class="tu-p-r-15" routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/">Home</a></li>
+              <li class="tu-p-r-15" routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/tv-shows">TV Shows</a></li>
+              <li class="tu-p-r-15" routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/movies">Movies</a></li>
+              <li class="tu-p-r-15" routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/kids">Kids</a></li>
+              <li class="tu-p-r-15" routerLinkActive="uk-active" [routerLinkActiveOptions]="{exact: true}">
+                <a routerLink="/cartoon">Cartoon</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="uk-navbar-right">
+          <ul class="uk-navbar-nav">
+            <div class="">
+              <form class="uk-search uk-search-default">
+                <span uk-search-icon></span>
+                <input (keyup)="searchTerm$.next($event.target.value)" class="uk-search-input" type="search"
+                  placeholder="Search">
+              </form>
+            </div>
+          </ul>
+        </div>
+      </nav>
+      <div class="sidenav uk-hidden@l uk-hidden@m uk-hidden@xl tu-b-v-1" *ngIf="openSideNav">
+        <div class="tu-p-t-0">
+          <div class="uk-width-1-1">
+            <ul class="uk-nav-primary uk-nav-parent-icon tu-p-h-sm-20" uk-nav>
+              <li (click)="toggleSideNav()" class="tu-p-v-6" routerLinkActive="uk-active"
+                [routerLinkActiveOptions]="{exact: true}">
+                <a class="tu-font-size-16" routerLink="/">Home</a></li>
+              <li class="uk-nav-divider"></li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+<app-slider></app-slider>
+<div *ngIf="data?.length > 0; else templateName">
+  <section>
+    <div class="tu-movie">
+      <div class=" uk-container tu-p-v-50 tu-p-v-sm-20">
+        <div class="uk-child-width-1-4@s uk-grid-match" uk-grid>
+          <div *ngFor="let movie of data">
+            <div class="uk-card">
+              <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{movie?.backdrop_path}}" alt="">
+              <div class="uk-position-medium uk-panel">
+                <h1>{{movie.title}}</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<ng-template #templateName>
+  <section>
+    <div class="tu-movie">
+      <div class=" uk-container tu-p-v-50 tu-p-v-sm-20">
+        <h2>Trending</h2>
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+          <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid">
+            <li *ngFor="let movie of trending">
+              <div class="uk-panel">
+                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{movie?.backdrop_path}}" alt="">
+                <div class="uk-position-medium uk-panel">
+                  <h1>{{movie.title}}</h1>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+            uk-slider-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+      </div>
+      <div class=" uk-container tu-p-v-50 tu-p-v-sm-20">
+        <h2>Upcoming Movie</h2>
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+          <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid">
+            <li *ngFor="let movie of upComing">
+              <div class="uk-panel">
+                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{movie?.backdrop_path}}" alt="">
+                <div class="uk-position-medium uk-panel">
+                  <h1>{{movie.title}}</h1>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+            uk-slider-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+      </div>
+      <div class=" uk-container tu-p-v-50 tu-p-v-sm-20">
+        <h2>Top Rated Movie</h2>
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+          <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid">
+            <li *ngFor="let movie of topRated">
+              <div class="uk-panel">
+                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{movie?.backdrop_path}}" alt="">
+                <div class="uk-position-medium uk-panel">
+                  <h1>{{movie.title}}</h1>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+            uk-slider-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+      </div>
+      <div class=" uk-container tu-p-v-50 tu-p-v-sm-20">
+        <h2>Popular Movie</h2>
+        <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider>
+          <ul class="uk-slider-items uk-child-width-1-2 uk-child-width-1-5@m uk-grid">
+            <li *ngFor="let movie of popular">
+              <div class="uk-panel">
+                <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/{{movie?.backdrop_path}}" alt="">
+                <div class="uk-position-medium uk-panel">
+                  <h1>{{movie.title}}</h1>
+                </div>
+              </div>
+            </li>
+          </ul>
+          <a class="uk-position-center-left uk-position-small" href="#" uk-slidenav-previous
+            uk-slider-item="previous"></a>
+          <a class="uk-position-center-right uk-position-small" href="#" uk-slidenav-next uk-slider-item="next"></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

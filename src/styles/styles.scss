@@ -1,0 +1,158 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Spartan:wght@100;200;300;400;500;600;700;800;900&display=swap');
+$fa-font-path: "~font-awesome/fonts";
+// @import "~bootstrap/dist/css/bootstrap.min.css";
+// @import "~ngx-bootstrap/datepicker/bs-datepicker.css";
+@import '~font-awesome/scss/font-awesome';
+@import "~@icon/themify-icons/themify-icons.css";
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+$global-font-family: 'Spartan',
+sans-serif;
+
+@import "./scss/_variables";
+@import "./scss/_helper";
+
+/* ========================================================================
+   1. Your custom variables and variable overwrites.
+ ========================================================================== */
+$mat-movie-teal : #ffffff !default;
+
+
+/* ========================================================================
+   2. Import default variables and available mixins.
+ ========================================================================== */
+
+@import "~uikit/src/scss/variables-theme.scss";
+@import "~uikit/src/scss/mixins-theme.scss";
+
+
+/* ========================================================================
+4. Import UIkit.
+========================================================================== */
+
+@import "~uikit/src/scss/uikit-theme.scss";
+
+
+
+/* ========================================================================
+   movie Component:  Sidenav
+ ========================================================================== */
+
+.sidenav {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  z-index: 1;
+  background-color: #0f171e;
+  color: #ffffff !important;
+  display: flex;
+  flex-direction: column;
+  transition: 0.5s all ease;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-name: uk-fade-top-medium;
+}
+
+
+/* ========================================================================
+   movie Component:  Header
+ ========================================================================== */
+
+.tu-header {
+  background: #0f171e;
+
+  .uk-navbar-container:not(.uk-navbar-transparent) {
+    background: #0f171e;
+  }
+
+  ul.uk-navbar-nav {
+    &>li {
+      &>a {
+        border-top: 4px solid transparent;
+        color: white;
+      }
+
+      &.uk-active>a {
+        border-top: 4px solid $mat-movie-teal !important;
+        font-weight: 600;
+        color: $mat-movie-teal !important;
+      }
+    }
+  }
+
+  .uk-logo {
+    &>img {
+      transition: all 0.5s;
+    }
+  }
+
+  input.uk-search-input {
+    border-radius: 30px;
+    color: #000000 !important;
+    font-weight: 600;
+    border: 1px solid #ffffff !important;
+    background: #ffffff !important;
+  }
+
+  .uk-search-default .uk-search-input {
+    height: 50px !important;
+
+    @include tu-screen-max-size-handler('-xs') {
+      .uk-search-default .uk-search-input {
+        height: 40px !important;
+      }
+    }
+  }
+
+  @include tu-screen-max-size-handler('-xs') {
+    .uk-search-default {
+      width: 120px;
+    }
+  }
+
+  .uk-navbar-toggle {
+    color: #ffffff !important;
+  }
+
+  .uk-nav-primary>li.uk-active>a {
+    color: #ffffff;
+  }
+}
+
+/* ========================================================================
+   movie Component:  Movie listing
+ ========================================================================== */
+.tu-movie {
+  background: #0f171e;
+
+  h2 {
+    font-size: 22px;
+    color: #ffffff !important;
+    font-weight: 500;
+
+    @include tu-screen-max-size-handler('-xs') {
+      font-size: 18px;
+    }
+  }
+
+  .uk-panel {
+    h1 {
+      color: #ffffff !important;
+      font-size: 13px;
+      font-weight: 900;
+    }
+  }
+}
+
+/* ========================================================================
+   movie Component:  Footer
+ ========================================================================== */
+
+.tu-footer {
+  background: #0f171e;
+  color: #ffffff !important;
+}
