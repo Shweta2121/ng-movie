@@ -37,7 +37,7 @@
             <div class="">
               <form class="uk-search uk-search-default">
                 <span uk-search-icon></span>
-                <input (keyup)="searchTerm$.next($event.target.value)" class="uk-search-input" type="search"
+                <input (keyup)="searchTerm$.next($any($event.target).value)" class="uk-search-input" type="search"
                   placeholder="Search">
               </form>
             </div>

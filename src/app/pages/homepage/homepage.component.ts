@@ -15,7 +15,7 @@ export class HomepageComponent extends SubscriptionHelper
   public upComing: any;
   public topRated: any;
   public popular: any;
-  searchTerm$ = new Subject<string>();
+  searchTerm$ = new Subject<any>() || null;
   data: any;
   config?: IHeader;
   openSideNav: boolean = false;
